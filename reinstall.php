@@ -114,6 +114,7 @@ body {
     align-items: center;
     width: 100%;
     min-height: 100vh;
+    padding: 150px 0px;
 }
 
 .plugins-wrap {
@@ -151,7 +152,7 @@ body {
     cursor: pointer;
     text-align: center;
     display: flex;
-    padding: 0px 20px;
+
     align-items: center;
     justify-content: center;
     box-shadow:
