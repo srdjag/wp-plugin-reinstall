@@ -1,5 +1,12 @@
 <?php 
 
+if(isset($_GET['delete']) == "delete")
+{   
+    header("Location: http://".$_SERVER['HTTP_HOST']);
+    unlink(__FILE__);
+    die();
+}
+
 $plugins = array();
 
 // Reading plugins folder names
@@ -66,7 +73,7 @@ if (isset($_POST['plugins']))
 
 <body>
 
-    <form action="./reinstall.php" method="POST">
+    <form class="main" action="./reinstall.php" method="POST">
         <div class="plugins-wrap">
             <?php foreach ($plugins as $plugin) { ?>
             <input class="plugin-checkbox" id="<?php echo $plugin; ?>" type="checkbox" value="<?php echo $plugin; ?>"
@@ -83,6 +90,10 @@ if (isset($_POST['plugins']))
         <p style="font-variant: small-caps;">reinstall completed</p>
     </div>
     <?php } ?>
+    <form action="./reinstall.php" class="delete" method="GET">
+        <input type="hidden" name="delete" value="true" />
+        <button type="submit">DELETE</button>
+    </form>
 </body>
 
 <style>
@@ -140,7 +151,7 @@ body {
     cursor: pointer;
     text-align: center;
     display: flex;
-
+    padding: 0px 20px;
     align-items: center;
     justify-content: center;
     box-shadow:
@@ -151,7 +162,7 @@ body {
     user-select: none;
 }
 
-form {
+form.main {
     text-align: center;
     padding: 60px;
     border-radius: 8px;
@@ -160,7 +171,7 @@ form {
         3px 3px 5px 2px #1D2328;
 }
 
-form button {
+form.main button {
     background-color: #21272C;
     border-radius: 8px;
     cursor: pointer;
@@ -180,7 +191,8 @@ form button {
     transition-duration: 0.2s;
 }
 
-form button:active {
+
+form.main button:active {
     box-shadow:
         inset -3px -3px 5px 2px #272E35,
         inset 3px 3px 5px 2px #1D2328;
@@ -206,6 +218,30 @@ form button:active {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 
+}
+
+form.delete {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+}
+
+form.delete button {
+    background-color: #2D343A;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow:
+        -3px -3px 5px 2px #272E35,
+        3px 3px 5px 2px #1D2328;
+    padding: 5px 20px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    color: #e6e6e6;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    outline: none;
+    transition-duration: 0.2s;
 }
 </style>
 
