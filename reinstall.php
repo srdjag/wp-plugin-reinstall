@@ -130,9 +130,9 @@ body {
 }
 
 .plugin-checkbox {
-    position: absolute;
+    position: relative;
     opacity: 0;
-
+    display: none;
 }
 
 .plugin-checkbox:checked+label {
